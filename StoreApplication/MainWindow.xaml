@@ -3,9 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:StoreApplication"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
 
+        <ListBox x:Name="sidebar" SelectionMode="Single" SelectionChanged="Sidebar_SelectionChanged" Grid.Column="0" Margin="0,10,0,10" BorderThickness="0">
+            <local:NavigationButton x:Name="navigationButtonStore" NavigationPath="StorePage.xaml" Margin="3" Padding="6" Cursor="Hand"/>
+            <local:NavigationButton x:Name="navigationButtonCart" NavigationPath="CartPage.xaml" Margin="3" Padding="6" Cursor="Hand"/>
+        </ListBox>
+
+        <Frame Grid.Column="1" x:Name="navigationFrame" NavigationUIVisibility="Hidden" Background="LightCyan"/>
     </Grid>
 </Window>
