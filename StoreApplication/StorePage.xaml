@@ -10,11 +10,6 @@
 
     <Grid>
         <ListView ItemsSource="{Binding Products}">
-            <ListView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel Orientation="Horizontal"/>
-                </ItemsPanelTemplate>
-            </ListView.ItemsPanel>
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Name" Width="200">

@@ -2,7 +2,7 @@
 
 namespace StoreApplication
 {
-    public class ProductModel : INotifyPropertyChanged
+    public class Product : INotifyPropertyChanged
     {
         private string _name;
         private decimal _price;

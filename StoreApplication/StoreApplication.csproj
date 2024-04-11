@@ -13,4 +13,9 @@
     <Content Include="Images\store.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Uno.UI" Version="5.1.104" />
+  </ItemGroup>
+
 </Project>

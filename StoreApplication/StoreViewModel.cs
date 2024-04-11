@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using StoreApplication.LoadData;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -6,27 +7,24 @@ namespace StoreApplication
 {
     public class StoreViewModel : INotifyPropertyChanged
     {
-        public ObservableCollection<ProductModel> Products { get; set; }
+        private readonly ProductLoader _productLoader = new();
+        public ObservableCollection<Product> Products { get; set; } = new();
         public ICommand AddToCartCommand { get; set; }
 
         public StoreViewModel()
         {
-            Products = new ObservableCollection<ProductModel>()
-            {
-                new() {Name = "Product 1", Price = 10},
-                new() {Name = "Product 2", Price = 15},
-                new() {Name = "Product 3", Price = 15},
-                new() {Name = "Product 4", Price = 15},
-                new() {Name = "Product 5", Price = 15},
-                new() {Name = "Product 6", Price = 15},
-            };
+            _productLoader.SaveProducts(new List<Product> { new Product() { Name = "product1", Price = 10 } }, "products.json");
+
+            List<Product> products = _productLoader.GetProducts("products.json");
+            foreach (var product in products)
+                Products.Add(product);
 
             AddToCartCommand = new RelayCommand(AddToCart);
         }
 
         private void AddToCart(object obj)
         {
-            if (obj is ProductModel product)
+            if (obj is Product product)
                 product.IsInCart = true;
         }
 
