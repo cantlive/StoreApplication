@@ -4,9 +4,20 @@ namespace StoreApplication
 {
     public class Product : INotifyPropertyChanged
     {
+        private int _id;
         private string _name;
         private decimal _price;
         private bool _isInCart;
+
+        public int ID
+        {
+            get { return _id; }
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(ID));
+            }
+        }
 
         public string Name
         {

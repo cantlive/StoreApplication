@@ -19,6 +19,10 @@ namespace StoreApplication.LoadData
             {
                 return [];
             }
+            catch (AggregateException)
+            {
+                return [];
+            }
         }
 
         public void SaveData(List<T> data, string fileName)

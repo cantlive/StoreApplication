@@ -13,13 +13,16 @@ namespace StoreApplication
 
         public StoreViewModel()
         {
-            _productLoader.SaveProducts(new List<Product> { new Product() { Name = "product1", Price = 10 } }, "products.json");
+            InitProducts();
+            AddToCartCommand = new RelayCommand(AddToCart);
+        }
 
-            List<Product> products = _productLoader.GetProducts("products.json");
+        private void InitProducts() 
+        {
+            List<Product> products = _productLoader.GetProductsOrCreate("products.json");
+
             foreach (var product in products)
                 Products.Add(product);
-
-            AddToCartCommand = new RelayCommand(AddToCart);
         }
 
         private void AddToCart(object obj)
