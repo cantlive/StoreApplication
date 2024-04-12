@@ -9,5 +9,6 @@ namespace StoreApplication.Services
         void AddToCart(Product product);
         void LoadProducts();
         void SaveProducts();
+        void RemoveFromCart(Product product);
     }
 }

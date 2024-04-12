@@ -1,20 +1,20 @@
 ﻿using StoreApplication.Core;
+using StoreApplication.Model;
 using StoreApplication.Services;
+using System.Windows.Input;
 
 namespace StoreApplication.ViewModel
 {
     internal class CartViewModel : ViewModelBase
     {
-        private ICartService _cartService;
-        private int _totalProductsCount;
-        private decimal _totalPrice;
+        private ICartService _cartService;       
 
         public CartViewModel(ICartService cartService)
         {
             CartService = cartService;
+            RemoveProductFromCartCommand = new RelayCommand(RemoveProductFromCart, o => true);
 
             LoadCartProducts();
-            CalculateTotal();
         }
 
         public ICartService CartService
@@ -27,35 +27,17 @@ namespace StoreApplication.ViewModel
             }
         }
 
-        public int TotalProductsCount
-        {
-            get { return _totalProductsCount; }
-            set
-            {
-                _totalProductsCount = value;
-                OnPropertyChanged();
-            }
-        }
+        public ICommand RemoveProductFromCartCommand { get; set; }
 
-        public decimal TotalPrice
+        private void RemoveProductFromCart(object o) 
         {
-            get { return _totalPrice; }
-            set
-            {
-                _totalPrice = value;
-                OnPropertyChanged();
-            }
+            if (o is Product product)
+                _cartService.RemoveFromCart(product);
         }
 
         private void LoadCartProducts()
         {
             _cartService.LoadProducts();
-        }
-
-        private void CalculateTotal()
-        {
-            TotalProductsCount = _cartService.CartProducts.Count;
-            TotalPrice = _cartService.CartProducts.Sum(x => x.Price);
         }
     }
 }

@@ -38,6 +38,8 @@ namespace StoreApplication.Model
             }
         }
 
+        public string Image { get; set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
