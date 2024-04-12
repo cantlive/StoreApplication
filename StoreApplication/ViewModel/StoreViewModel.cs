@@ -12,9 +12,9 @@ namespace StoreApplication.ViewModel
         private ICartService _cartService;
 
         public StoreViewModel(IProductLoaderService productLoaderService, ICartService cartService)
-        {
-            _cartService = cartService;
+        {           
             _productLoaderService = productLoaderService;
+            _cartService = cartService;
 
             InitProducts();
             AddToCartCommand = new RelayCommand(AddToCart, o => true);
@@ -26,6 +26,7 @@ namespace StoreApplication.ViewModel
         private void InitProducts()
         {
             var products = _productLoaderService.GetProductsOrCreate("products.json");
+            _productLoaderService.LoadProductsImages(products);
 
             foreach (var product in products)
                 Products.Add(product);

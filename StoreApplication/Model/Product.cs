@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System.ComponentModel;
+using System.Windows.Media;
 
 namespace StoreApplication.Model
 {
@@ -49,7 +51,10 @@ namespace StoreApplication.Model
             }
         }
 
-        public string Image { get; set; }
+        public string Image { get; set; } = string.Empty;
+
+        [JsonIgnore]
+        public ImageSource ImageSource { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

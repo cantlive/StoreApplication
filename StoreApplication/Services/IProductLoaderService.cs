@@ -7,5 +7,6 @@ namespace StoreApplication.Services
         List<Product> GetProductsOrCreate(string fileName);
         List<Product> GetProducts(string fileName);
         void SaveProducts(List<Product> products, string fileName);
+        void LoadProductsImages(List<Product> products);
     }
 }
