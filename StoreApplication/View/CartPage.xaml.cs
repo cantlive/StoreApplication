@@ -1,8 +1,8 @@
 ﻿using System.Windows.Controls;
 
-namespace StoreApplication
+namespace StoreApplication.View
 {
-    public partial class CartPage : Page
+    public partial class CartPage : UserControl
     {
         public CartPage()
         {

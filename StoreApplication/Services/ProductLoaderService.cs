@@ -1,8 +1,11 @@
-﻿namespace StoreApplication.LoadData
+﻿using StoreApplication.Core;
+using StoreApplication.Model;
+
+namespace StoreApplication.Services
 {
-    public class ProductLoader
+    public class ProductLoaderService : IProductLoaderService
     {
-        private JsonSerializer<Product> _jsonService = new();
+        private JsonSerializer<Product> _jsonSerializer = new();
 
         public List<Product> GetProductsOrCreate(string fileName)
         {
@@ -18,15 +21,15 @@
 
         public List<Product> GetProducts(string fileName)
         {
-            return _jsonService.LoadData(fileName);
+            return _jsonSerializer.LoadData(fileName);
         }
 
         public void SaveProducts(List<Product> products, string fileName)
         {
-            _jsonService.SaveData(products, fileName);
+            _jsonSerializer.SaveData(products, fileName);
         }
 
-        public static List<Product> GetSampleProducts() 
+        private static List<Product> GetSampleProducts()
         {
             return
             [

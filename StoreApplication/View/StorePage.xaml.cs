@@ -1,13 +1,12 @@
 ﻿using System.Windows.Controls;
 
-namespace StoreApplication
+namespace StoreApplication.View
 {
-    public partial class StorePage : Page
+    public partial class StorePage : UserControl
     {
         public StorePage()
         {
             InitializeComponent();
-            DataContext = new StoreViewModel();
         }
     }
 }

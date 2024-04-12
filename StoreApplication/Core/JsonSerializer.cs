@@ -2,7 +2,7 @@
 using System.IO;
 using Windows.Storage;
 
-namespace StoreApplication.LoadData
+namespace StoreApplication.Core
 {
     public class JsonSerializer<T>
     {
