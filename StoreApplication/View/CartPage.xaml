@@ -35,6 +35,7 @@
                             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5">
                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" VerticalAlignment="Center"/>
+                                <TextBlock Text="{Binding Quantity, StringFormat='Количество: {0}'}" VerticalAlignment="Center"/>
                             </StackPanel>
                             <local:CustomButton Grid.Column="2" 
                                 Content="Удалить из корзины" 

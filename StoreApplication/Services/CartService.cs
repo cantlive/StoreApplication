@@ -39,7 +39,11 @@ namespace StoreApplication.Services
 
         public void AddToCart(Product product)
         {
-            CartProducts.Add(product);
+            if (CartProducts.Contains(product))
+                product.Quantity = product.Quantity + 1;
+            else
+                CartProducts.Add(product);
+
             CalculateTotal();
         }
 
@@ -66,8 +70,8 @@ namespace StoreApplication.Services
 
         private void CalculateTotal()
         {
-            TotalProductsCount = CartProducts.Count;
-            TotalPrice = CartProducts.Sum(x => x.Price);
+            TotalProductsCount = CartProducts.Sum(x => x.Quantity);
+            TotalPrice = CartProducts.Sum(x => x.Quantity * x.Price);
         }
     }
 }

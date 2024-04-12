@@ -7,6 +7,7 @@ namespace StoreApplication.Model
         private int _id;
         private string _name;
         private decimal _price;
+        private int _quantity;
 
         public int ID
         {
@@ -35,6 +36,16 @@ namespace StoreApplication.Model
             {
                 _price = value;
                 OnPropertyChanged(nameof(Price));
+            }
+        }
+
+        public int Quantity
+        {
+            get { return _quantity; }
+            set
+            {
+                _quantity = value;
+                OnPropertyChanged(nameof(Quantity));
             }
         }
 
