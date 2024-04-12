@@ -48,5 +48,11 @@ namespace StoreApplication
             mainWindow.Show();
             base.OnStartup(e);
         }
+
+        protected override void OnExit(ExitEventArgs e) 
+        {
+            var cartService = _serviceProvider.GetRequiredService<ICartService>();
+            cartService.SaveProducts();
+        }
     }
 }

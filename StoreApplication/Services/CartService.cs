@@ -50,6 +50,7 @@ namespace StoreApplication.Services
         public void LoadProducts()
         {
             var products = _productLoaderService.GetProducts("cartProducts.json");
+            _productLoaderService.LoadProductsImages(products);
 
             foreach (var product in products)
                 AddToCart(product);
