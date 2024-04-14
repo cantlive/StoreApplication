@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using StoreApplication.ViewModel;
+using System.Windows;
 
 namespace StoreApplication.View
 {
@@ -7,9 +8,6 @@ namespace StoreApplication.View
         public MainWindow()
         {
             InitializeComponent();
-            //navigationButtonStore.IsSelected = true;
-            //navigationButtonStore.Icon = new BitmapImage(new Uri(Path.GetFullPath("../../../Images/shop.png")));
-            //navigationButtonCart.Icon = new BitmapImage(new Uri(Path.GetFullPath("../../../Images/shoppingCart.png")));
         }
     }
 }

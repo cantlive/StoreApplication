@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
 using StoreApplication.Core;
 using StoreApplication.Services;
 using StoreApplication.View;
@@ -9,50 +9,47 @@ namespace StoreApplication
 {
     public partial class App : Application
     {
-        private ServiceProvider _serviceProvider;
+        private IContainer _container;
 
         public App()
         {
-            var services = new ServiceCollection();
+            var builder = new ContainerBuilder();
 
-            services.AddSingleton(provider => new MainWindow() 
+            builder.RegisterType<MainWindow>().AsSelf();
+            builder.RegisterType<MainViewModel>().AsSelf();
+
+            builder.RegisterType<StorePage>().AsSelf();
+            builder.RegisterType<StoreViewModel>().AsSelf();
+
+            builder.RegisterType<CartPage>().AsSelf();
+            builder.RegisterType<CartViewModel>().AsSelf();
+
+            builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            builder.RegisterType<ProductLoaderService>().As<IProductLoaderService>().SingleInstance();
+            builder.RegisterType<CartService>().As<ICartService>().SingleInstance();
+
+            builder.Register<Func<Type, ViewModelBase>>(c =>
             {
-                DataContext = provider.GetRequiredService<MainViewModel>()
+                var context = c.Resolve<IComponentContext>();
+                return viewModelType => (ViewModelBase)context.Resolve(viewModelType);
             });
-            services.AddSingleton<MainViewModel>();
 
-            services.AddSingleton(provider => new StorePage()
-            {
-                DataContext = provider.GetRequiredService<StoreViewModel>()
-            });
-            services.AddSingleton<StoreViewModel>();
-
-            services.AddSingleton(provider => new CartPage()
-            {
-                DataContext = provider.GetRequiredService<CartViewModel>()
-            });
-            services.AddSingleton<CartViewModel>();
-
-            services.AddSingleton<INavigationService, NavigationService>();
-            services.AddSingleton<IProductLoaderService, ProductLoaderService>();
-            services.AddSingleton<ICartService, CartService>();
-            services.AddSingleton<Func<Type, ViewModelBase>>
-                (provider => viewModelType => (ViewModelBase)provider.GetRequiredService(viewModelType));
-
-            _serviceProvider = services.BuildServiceProvider();
+            _container = builder.Build();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
+            var mainWindow = _container.Resolve<MainWindow>();
+            mainWindow.DataContext = _container.Resolve<MainViewModel>();
             mainWindow.Show();
             base.OnStartup(e);
         }
 
-        protected override void OnExit(ExitEventArgs e) 
+        protected override void OnExit(ExitEventArgs e)
         {
-            var cartService = _serviceProvider.GetRequiredService<ICartService>();
+            var cartService = _container.Resolve<ICartService>();
             cartService.SaveProducts();
+            base.OnExit(e);
         }
     }
 }
