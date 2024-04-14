@@ -31,12 +31,15 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
+                            
                             <Image Source="{Binding ImageSource}" Stretch="Uniform" Width="100" Height="100" Margin="5"/>
+                            
                             <StackPanel Grid.Column="1" Orientation="Vertical" Margin="5">
                                 <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" VerticalAlignment="Center"/>
                                 <TextBlock Text="{Binding Quantity, StringFormat='Количество: {0}'}" VerticalAlignment="Center"/>
                             </StackPanel>
+                            
                             <local:CustomButton Grid.Column="2" 
                                 Content="Удалить из корзины" 
                                 Command="{Binding DataContext.RemoveProductFromCartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" 

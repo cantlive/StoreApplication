@@ -22,8 +22,11 @@
                     <Border BorderBrush="Black" BorderThickness="1" Margin="5">
                         <StackPanel>
                             <Image Source="{Binding ImageSource}" Stretch="Uniform" Width="100" Height="100" />
+                            
                             <TextBlock Text="{Binding Name}" TextAlignment="Center" />
+                            
                             <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" TextAlignment="Center" />
+                            
                             <local:CustomButton Content="Добавить в корзину" 
                                 Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}" 
                                 CommandParameter="{Binding}"

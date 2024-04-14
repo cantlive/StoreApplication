@@ -48,6 +48,7 @@
                     <Image Source="{Binding ShopIcon}" Height="20" Width="20" Margin="5"/>
                 </StackPanel>
             </Button>
+            
             <Button Style="{StaticResource NavigationButtonStyle}"
                     Command="{Binding NavigateToCartPageCommand}"
                     Cursor="Hand">

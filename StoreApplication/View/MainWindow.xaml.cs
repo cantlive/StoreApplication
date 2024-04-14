@@ -1,5 +1,4 @@
-﻿using StoreApplication.ViewModel;
-using System.Windows;
+﻿using System.Windows;
 
 namespace StoreApplication.View
 {
