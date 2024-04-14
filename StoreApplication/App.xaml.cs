@@ -16,13 +16,13 @@ namespace StoreApplication
             var builder = new ContainerBuilder();
 
             builder.RegisterType<MainWindow>().AsSelf();
-            builder.RegisterType<MainViewModel>().AsSelf();
+            builder.RegisterType<MainViewModel>().AsSelf().SingleInstance();
 
             builder.RegisterType<StorePage>().AsSelf();
-            builder.RegisterType<StoreViewModel>().AsSelf();
+            builder.RegisterType<StoreViewModel>().AsSelf().SingleInstance();
 
             builder.RegisterType<CartPage>().AsSelf();
-            builder.RegisterType<CartViewModel>().AsSelf();
+            builder.RegisterType<CartViewModel>().AsSelf().SingleInstance();
 
             builder.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
             builder.RegisterType<ProductLoaderService>().As<IProductLoaderService>().SingleInstance();
